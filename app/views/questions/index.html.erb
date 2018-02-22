@@ -1,0 +1,30 @@
+<h1 class="mt-4">Preguntas</h1>
+
+<div class="text-right mb-2">
+  <%= link_to "Hacer una pregunta", new_question_path, class: "btn btn-primary btn-lg" %>
+</div>
+
+<% @questions.each do |question| %>
+  <hr>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <h4><%= question.votes.count %></h4>
+          <p class="text-muted">Votos</p>
+        </div>
+        <div class="col-md-6 text-center">
+          <h4><%= question.answers.count %></h4>
+          <p class="text-muted">Respuestas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <h3 class="text-primary"><%= link_to question.title, question_path(question.id) %></h3>
+      <p class="text-muted">
+        Preguntó <%= User.find(question.user_id).email %> hace <%= time_ago_in_words(question.created_at) %>
+      </p>
+    </div>
+  </div>
+<% end %>
