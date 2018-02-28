@@ -1,5 +1,4 @@
 class Vote < ApplicationRecord
+  belongs_to :votable, polymorphic: true
   belongs_to :user
-  belongs_to :question
-  belongs_to :answer
 end

@@ -18,17 +18,23 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-4 ml-auto">
-            <li class="nav-item">
-              <%= link_to "Ingresar", new_user_session_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Registrarse", new_user_registration_path, class: "nav-link" %>
-            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "Salir", destroy_user_session_path, method: :delete, class: "nav-link"  %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Ingresar", new_user_session_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Registrarse", new_user_registration_path, class: "nav-link" %>
+              </li>
+            <% end %>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Busca una pregunta" aria-label="Buscar">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
-          </form>
+          <%= form_tag questions_path, method: :get, class: "form-inline my-2 my-lg-0" do  %>
+            <%= text_field_tag :query, params[:query], class: "form-control mr-sm-2", placeholder: "Busca una pregunta" %>
+            <%= submit_tag "Buscar", class: "btn btn-primary my-2 my-sm-0", :name => nil %>
+          <% end %>
         </div>
       </div>
     </nav>
@@ -44,7 +50,12 @@
       <% end %>
 
       <% if flash[:notice] %>
-        <p class="notice"><%= notice %></p>
+        <div class="alert alert-success alert-dismissible fade show mt-sm-3" role="alert">
+          <%= notice %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       <% end %>
       <%= yield %>
     </div>

@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
-
-  resources :questions
-
+  
   root "questions#index"
+  
+  resources :questions do
+    resource :vote, only: [:create, :destroy], module: :questions
+    resources :comments, only: :create, module: :questions
+    
+    resources :answers, only: :create do
+      resource :vote, only: [:create, :destroy], module: :answers
+      resources :comments, only: :create, module: :answers
+    end
+  end
 end

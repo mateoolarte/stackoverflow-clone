@@ -1,0 +1,41 @@
+.product-upvote {
+  position: relative;
+  text-decoration: none;
+  padding: 5px;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .upvote-arrow {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    border-bottom: 15px solid #303030;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 10px solid transparent;
+    transform: translateX(-50%);
+  }
+
+  .upvote-count {
+    display: block;
+    color: #303030;
+    font-size: 26px;
+  }
+
+  &:hover .upvote-arrow {
+    border-bottom-color: #007bff;
+  }
+
+  &.upvote-active {
+
+    .upvote-arrow {
+      border-bottom-color: #007bff;
+    }
+
+    .upvote-count {
+      color: #007bff;
+    }
+  }
+}
