@@ -17,7 +17,7 @@ gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Bootstrap for stylesheets framework
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.1.3'
 # Use PopperJs for tooltips and popovers and Bootstrap dependency
 gem 'popper_js', '~> 1.12.9'
 # Use Jquery for Javascript framework
